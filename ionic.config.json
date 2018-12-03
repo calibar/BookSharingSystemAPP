@@ -1,0 +1,7 @@
+{
+  "name": "BSS_Mobile",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

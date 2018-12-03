@@ -1,0 +1,35 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+
+
+</ion-header>
+
+
+    <body>
+        <main>
+            <div id="container">
+                
+              <form action="">
+                  <img src="../../assets/imgs/drawing.svg" width="100%" >
+                <input type="text" placeholder="username"  [(ngModel)]="username" [ngModelOptions]="{standalone: true}"><br>
+                <input type="password" placeholder="password"  [(ngModel)]="pwd" [ngModelOptions]="{standalone: true}"><br>
+                <input type="submit" value="LOG IN" (click)="login()"><br>
+                <span ><a href="#" style="color:rgb(37, 31, 0)">Forgot Password?</a></span>
+                <div style="text-align: center"> <br><button ion-button (click)="gotoSignup()" clear style="color:black"><u>click here to signup</u></button></div>
+                <div style="text-align: center"><br><label>SignIn with:</label>
+                  &nbsp;<img src="../../assets/imgs/facebookIco.png" height="25">
+                  &nbsp;<img src="../../assets/imgs/GoogleIco.png" height="25">
+                  &nbsp;<img src="../../assets/imgs/InsIco.png" height="25"></div>
+                  <div style="text-align: center"> <br><button ion-button (click)="magic()" clear style="color:black"><u>magic</u></button></div>
+              </form>
+            </div>
+            </main>
+    </body>
+
+
