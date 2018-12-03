@@ -19,7 +19,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ServiceProvider } from '../providers/service/service';
 import { HttpModule } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { QRCodeModule } from 'angular2-qrcode';
 @NgModule({
   declarations: [
     MyApp,
@@ -38,6 +39,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     BrowserModule,
     HttpClientModule,
     HttpModule,
+    NgxQRCodeModule,
+    QRCodeModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

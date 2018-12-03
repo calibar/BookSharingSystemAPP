@@ -8,7 +8,7 @@ import {ServiceProvider} from "../../providers/service/service"
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+declare var QRious:any
 @IonicPage()
 @Component({
   selector: 'page-borrow',
@@ -18,8 +18,10 @@ export class BorrowPage {
   public username :string
   public books:BookInfoModel[]
   public book:BookInfoModel
+ 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public service:ServiceProvider) {
+    public service:ServiceProvider
+    ) {
       this.books=[]
   }
 
@@ -68,10 +70,11 @@ export class BorrowPage {
 var modal = document.getElementById('myModal');
 
 // Get the image and insert it inside the modal - use its "alt" text as a caption
-let modalImg=document.getElementById("picture") as HTMLImageElement;
+/*let modalImg=document.getElementById("picture") as HTMLImageElement;
 modal.style.display="block";
-modalImg.src="http://www.griffithsrc.com.au/wp-content/uploads/2017/01/SRC_LOGO_PNG.png"
+modalImg.src="http://www.griffithsrc.com.au/wp-content/uploads/2017/01/SRC_LOGO_PNG.png"*/
 // Get the <span> element that closes the modal
+modal.style.display="block";
 let span:HTMLElement = document.getElementsByClassName('close')[0] as HTMLElement;
 
 // When the user clicks on <span> (x), close the modal
