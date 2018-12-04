@@ -5,15 +5,24 @@
   Ionic pages and navigation.
 -->
 <ion-header>
+<<<<<<< HEAD
   
 <ion-navbar color="dark" >
     <ion-title>Borrowed Books<ion-icon name="ios-log-out" (click)="logout()" style="color:white !important; float: right;" ></ion-icon></ion-title>
    
   </ion-navbar>
+=======
+
+    <ion-navbar color="dark">
+        <ion-title>Borrowed Books</ion-title>
+    </ion-navbar>
+
+>>>>>>> 517f1fae25178aa63fe1629421052161010892f1
 </ion-header>
 
 
 <ion-content padding class="bkgrd">
+<<<<<<< HEAD
     <ion-refresher (ionRefresh)="doRefresh($event)">
         <ion-refresher-content
           pullingIcon="arrow-dropdown"
@@ -26,12 +35,19 @@
       <ion-card color="dark">
           <ion-card-header>
               {{abook.BookName}}
+=======
+    <div *ngFor="let abook of books">
+        <ion-card color="dark">
+            <ion-card-header>
+                {{abook.BookName}}
+>>>>>>> 517f1fae25178aa63fe1629421052161010892f1
             </ion-card-header>
             <ion-list>
                 <ion-item center>Author: {{abook.BookAuthor}}</ion-item>
                 <ion-item center>Owner: {{abook.BookOwner}}</ion-item>
                 <ion-item center>Expect Return Date: {{abook.ExpectReturnTime}}</ion-item>
                 <ion-item center>Book Description: {{abook.BookDescription}}</ion-item>
+<<<<<<< HEAD
                 <ion-item center><button ion-button outline (click)="GenerateQR(abook)" full color="dark">Generate QRcode to Return</button></ion-item>
               </ion-list>
       </ion-card>
@@ -48,3 +64,22 @@
     <div id="caption"></div>
   </div>
 </ion-content>
+=======
+                <ion-item center><button ion-button outline (click)="GenerateQR()" full color="dark">Generate QRcode to Return</button></ion-item>
+            </ion-list>
+        </ion-card>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <div style="display:flex;
+        justify-content:center;
+        align-items: center;">
+            <qr-code [value]="'All QR Code data goes here!'" [size]="200"></qr-code>
+        </div>
+        <span class="close"><ion-icon name="close-circle"></ion-icon></span>
+        <!--<img class="modal-content" src="http://www.griffithsrc.com.au/wp-content/uploads/2017/01/SRC_LOGO_PNG.png" id="picture">-->
+        <div id="caption"></div>
+    </div>
+</ion-content>
+>>>>>>> 517f1fae25178aa63fe1629421052161010892f1

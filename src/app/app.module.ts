@@ -22,8 +22,11 @@ import { HttpModule } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { QRCodeModule } from 'angular2-qrcode';
+<<<<<<< HEAD
 import {BarcodeScanner} from '@ionic-native/barcode-scanner'
 
+=======
+>>>>>>> 517f1fae25178aa63fe1629421052161010892f1
 @NgModule({
   declarations: [
     MyApp,
