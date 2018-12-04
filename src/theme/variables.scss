@@ -38,10 +38,12 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  pink:        rgb(253, 155, 248)
 );
-
-
+$refresher-icon-color:white;
+$refresher-text-color:white;
+$button-round-border-radius:64px;
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

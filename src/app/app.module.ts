@@ -12,6 +12,7 @@ import { SignupPage} from '../pages/signup/signup'
 import { BorrowPage} from '../pages/borrow/borrow'
 import { LendPage} from '../pages/lend/lend'
 import { PostPage} from '../pages/post/post'
+import { RequestPage} from '../pages/request/request'
 import { MessagePage} from '../pages/message/message'
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -19,6 +20,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ServiceProvider } from '../providers/service/service';
 import { HttpModule } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { QRCodeModule } from 'angular2-qrcode';
+import {BarcodeScanner} from '@ionic-native/barcode-scanner'
 
 @NgModule({
   declarations: [
@@ -32,12 +36,15 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     LendPage,
     PostPage,
     MessagePage,
+    RequestPage,
     TabsPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     HttpModule,
+    NgxQRCodeModule,
+    QRCodeModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -52,6 +59,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     LendPage,
     PostPage,
     MessagePage,
+    RequestPage,
     SignupPage
   ],
   providers: [
@@ -60,6 +68,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HttpClientModule,
     HttpClient,
+    BarcodeScanner,
     ServiceProvider
 
   ]

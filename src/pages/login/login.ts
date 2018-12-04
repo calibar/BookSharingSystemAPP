@@ -34,6 +34,55 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
   magic(){
+    this.User.username="mengxuan"
+    this.User.pwd="lmx1993917"
+    this.service.login(this.User.username,this.User.pwd)
+    .subscribe(data=>{
+      console.log(data)
+      if(data=="matched"){
+        this.service.getUserProfile(this.User.username)
+        .subscribe((res:any)=>{
+          console.log(res)
+          this.userProfile.Username=res.Username
+          this.userProfile.Avatar=res.Avatar
+          this.userProfile.Badge=res.Badge
+          this.userProfile.BorrowCount=res.BorrowCount
+          this.userProfile.Campus=res.Campus
+          this.userProfile.Email=res.Email
+          this.userProfile.EmailVerifyed=res.EmailVerifyed
+          this.userProfile.LendCount=res.LendCount
+          this.userProfile.Nickname=res.Nickname
+          this.userProfile.PostCount=res.PostCount
+          this.userProfile.Rank=res.Rank
+          this.userProfile.RequestCount=res.RequestCount
+          this.userProfile.Score=res.Score
+          this.userProfile.StudentId=res.StudentId
+          localStorage.setItem("currentUser",this.userProfile.Username)
+          localStorage.setItem("currentUserNickname",this.userProfile.Nickname)
+          localStorage.setItem("currentUserRank",String(this.userProfile.Rank))
+          localStorage.setItem("currentUserLends",String(this.userProfile.LendCount))
+          localStorage.setItem("currentUserBorrows",String(this.userProfile.BorrowCount))
+          localStorage.setItem("currentUserPosts",String(this.userProfile.PostCount))
+          localStorage.setItem("currentUserAvator",this.userProfile.Avatar)
+          localStorage.setItem("currentUserBadge",this.userProfile.Badge)
+          localStorage.setItem("currentUserCampus",this.userProfile.Campus)
+          localStorage.setItem("currentUserStudentId",this.userProfile.StudentId)
+          localStorage.setItem("currentUserEmail",this.userProfile.Email)
+          localStorage.setItem("currentUserEmailVerifyed",String(this.userProfile.EmailVerifyed))
+          this.navCtrl.setRoot(this.rootPage)
+          this.navCtrl.popToRoot
+        })
+        
+    }else if (data=="not matched"){
+      alert("Password not matched")
+    }else if(data=="not exiested"){
+      alert("no such a user")
+    }else {
+      alert("connection error")
+    }
+    },err=>{
+      console.log(err.error)
+    })
     this.navCtrl.setRoot(this.rootPage)
         this.navCtrl.popToRoot
   }
@@ -58,7 +107,7 @@ export class LoginPage {
           this.userProfile.LendCount=res.LendCount
           this.userProfile.Nickname=res.Nickname
           this.userProfile.PostCount=res.PostCount
-          this.userProfile.Rank=res.rank
+          this.userProfile.Rank=res.Rank
           this.userProfile.RequestCount=res.RequestCount
           this.userProfile.Score=res.Score
           this.userProfile.StudentId=res.StudentId
@@ -74,9 +123,10 @@ export class LoginPage {
           localStorage.setItem("currentUserStudentId",this.userProfile.StudentId)
           localStorage.setItem("currentUserEmail",this.userProfile.Email)
           localStorage.setItem("currentUserEmailVerifyed",String(this.userProfile.EmailVerifyed))
+          this.navCtrl.setRoot(this.rootPage)
+          this.navCtrl.popToRoot
         })
-        this.navCtrl.setRoot(this.rootPage)
-        this.navCtrl.popToRoot
+        
     }else if (data=="not matched"){
       alert("Password not matched")
     }else if(data=="not exiested"){

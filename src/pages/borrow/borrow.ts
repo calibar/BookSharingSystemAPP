@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
 import { BookInfoModel} from '../../models/models'
 import {ServiceProvider} from "../../providers/service/service"
+import {LoginPage} from "../../pages/login/login"
 /**
  * Generated class for the BorrowPage page.
  *
@@ -18,19 +19,30 @@ export class BorrowPage {
   public username :string
   public books:BookInfoModel[]
   public book:BookInfoModel
+  public bookidqr:string
   constructor(public navCtrl: NavController, public navParams: NavParams,
+    private modal:ModalController,
     public service:ServiceProvider) {
       this.books=[]
   }
 
-  ionViewWillEnter(){
-    
-    this.loadBorrowedBooks();
-    console.log(this.books)
+  ionViewDidEnter(){
+   
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad BorrowPage');
-
+    this.bookidqr=''
+    this.books=[];
+    this.loadBorrowedBooks();
+    console.log(this.books)
+  }
+  doRefresh(refresher) {
+    this.books=[];
+    this.loadBorrowedBooks();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 1000);
   }
   loadBorrowedBooks(){
     this.username=localStorage.getItem("currentUser")
@@ -63,14 +75,20 @@ export class BorrowPage {
     }
     )
   }
-  GenerateQR(){
+  openModal(book:BookInfoModel){
+    this.bookidqr=String(book.Id)
+    const bookid=String(book.Id)
+    const qrModal=this.modal.create('QRmodalPage',{data:bookid})
+    qrModal.present();
+  }
+  GenerateQR(book:BookInfoModel){
+this.bookidqr=String(book.Id)
+console.log(this.bookidqr)
     // Get the modal
 var modal = document.getElementById('myModal');
 
 // Get the image and insert it inside the modal - use its "alt" text as a caption
-let modalImg=document.getElementById("picture") as HTMLImageElement;
 modal.style.display="block";
-modalImg.src="http://www.griffithsrc.com.au/wp-content/uploads/2017/01/SRC_LOGO_PNG.png"
 // Get the <span> element that closes the modal
 let span:HTMLElement = document.getElementsByClassName('close')[0] as HTMLElement;
 
@@ -78,5 +96,9 @@ let span:HTMLElement = document.getElementsByClassName('close')[0] as HTMLElemen
 span.onclick = function() { 
     modal.style.display = "none";
 }
+  }
+  logout(){
+    this.navCtrl.setRoot(LoginPage)
+    this.navCtrl.popToRoot()
   }
 }

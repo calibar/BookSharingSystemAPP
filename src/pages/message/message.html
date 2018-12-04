@@ -6,13 +6,32 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="dark">
     <ion-title>message</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content padding class="bkgrd">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Pull to refresh"
+          refreshingSpinner="circles"
+          refreshingText="Refreshing...">
+        </ion-refresher-content>
+      </ion-refresher>
+  <div *ngFor="let amsg of msgs">
+    <ion-card color="dark">
+        <ion-card-header>
+            From {{amsg.Sender}}
+          </ion-card-header>
+          <ion-list>
+              <ion-item center>Content: {{amsg.Content}}</ion-item>
+              <ion-item center>Sending Time: {{amsg.SendingTime}}</ion-item>
+              <ion-item center><button ion-button outline (click)="openModal(amsg)" full color="dark">Response to Message Sender</button></ion-item>
+            </ion-list>
+    </ion-card>
+ </div>
 </ion-content>

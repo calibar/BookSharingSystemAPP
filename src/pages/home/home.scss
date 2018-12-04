@@ -1,7 +1,60 @@
 page-home {
 .bkgrd{
     height: 100vh;
-        background: url(../../assets/imgs/LoginBG1.jpg) fixed no-repeat;
+        background: url("../assets/imgs/home.jpg") fixed no-repeat;
         background-size: cover;
+}
+.intro{
+    color:white;
+    font-style:italic;
+    font-family:"Times New Roman";
+}
+.important{
+    color: #faa1ff;
+    font-weight:bold;
+    font-size: 26px;
+}
+.important1{
+    color: #790480;
+    font-weight:bold;
+    font-size: 26px;
+}
+.scanner{
+    font-style:italic;
+    font-family:"Times New Roman";
+    color: #faa1ff;
+    font-weight:bold;
+    font-size: 26px;
+    position: absolute;
+    top: 65%;
+    left: 30%;
+    transform: translateY(-50%);
+}
+.button-container{
+    position:relative;
+    height:100%;
+   }
+   
+   .button{
+     position: absolute;
+     top: 75%;
+     left: 40%;
+     transform: translateY(-50%);
+   }
+   .MessageBox{
+    font-style:italic;
+    font-family:"Times New Roman";
+    color: #6b0170;
+    font-weight:normal;
+    font-size: 18px;
+    position: absolute;
+    top: 92%;
+    left: 10%;
+    transform: translateY(-50%);
+}
+.share{
+    color:#faa1ff;
+    font-style:italic;
+    font-family:"Times New Roman";
 }
 }

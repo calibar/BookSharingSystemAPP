@@ -1,17 +1,35 @@
 <ion-header>
   <ion-navbar color="dark">
-    <ion-title>Home</ion-title>
+    <ion-title>Home<ion-icon name="ios-log-out" (click)="logout()" style="color:white !important; float: right;" ></ion-icon></ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="bkgrd">
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Pull to refresh"
+          refreshingSpinner="circles"
+          refreshingText="Refreshing..." >
+        </ion-refresher-content>
+      </ion-refresher>
+  <div class="intro">
+      <h1>Hello! {{username}}</h1>
+        <h3>You are the <span class="important1">{{userrank}}</span> Books Donor in Campus <span class="important1">{{userCampus}}</span>.</h3>
+        <h5>You have shared <span class="important">{{posts}} books</span>, <span class="important1">{{lends}}</span> of them have been lended to other people. Thank you for your <span class="important">Generous</span>!</h5>
+        <h5>We are honored to help you borrow the <span class="important1">{{borrows}} books</span> you need from other people.</h5>
+  </div>
+  <div class="scanner">Scan QRcode</div>
+  <span class="intro">share my contribution with</span><br>
+  <br><img src="../../assets/imgs/facebookIco.png" height="25"><br><br>
+  <img src="../../assets/imgs/GoogleIco.png" height="25"><br><br>
+  <img src="../../assets/imgs/InsIco.png" height="25">
+  <div class="scanbutton-container">
+    <button ion-button icon-only round large color="pink" (click)="scanner()" >
+      <ion-icon name="qr-scanner"></ion-icon>
+    </button>
+  </div>
+ 
+  
+  <div class="MessageBox"><span (click)="gotoMessageBox()"><u>You have {{MessageNumber}} in your Message Box.</u><ion-icon name="mail" large></ion-icon></span></div>
 </ion-content>

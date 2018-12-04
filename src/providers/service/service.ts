@@ -1,6 +1,6 @@
 import { HttpClient,HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserInfoModel,UserProfileInfoModel} from '../../models/models'
+import { UserInfoModel,UserProfileInfoModel,MessageInfoModel, BookInfoModel,MessageWithIdModel} from '../../models/models'
 
 /*
   Generated class for the ServiceProvider provider.
@@ -49,19 +49,52 @@ export class ServiceProvider {
   getLendedBooks(username:string){
     const params=new HttpParams()
     .append("query","BookStatus:borrowed,BookOwner:"+username)
+    .append("sortby","ExpectReturnTime")
+    .append("order","asc")
     let seq = this.http.get(this.url+'book_transaction', { responseType: 'json' ,params:params});
     return seq;
   }
   getPostBooks(username:string){
     const params=new HttpParams()
     .append("query","BookStatus:post,BookOwner:"+username)
+    .append("sortby","PostExpiration")
+    .append("order","asc")
     let seq = this.http.get(this.url+'book_transaction', { responseType: 'json' ,params:params});
     return seq;
   }
   getRequestBooks(username:string){
     const params=new HttpParams()
     .append("query","BookStatus:request,BookBorrower:"+username)
+    .append("sortby","PostExpiration")
+    .append("order","asc")
     let seq = this.http.get(this.url+'book_transaction', { responseType: 'json' ,params:params});
     return seq;
+  }
+  sendMessageTo(message:MessageInfoModel){
+    var params=JSON.stringify(message)
+    let seq=this.http.post(this.url+'messger',params,{ headers: {'Content-Type':'application/x-www-form-urlencoded'}})
+    return seq;
+  }
+  getBookById(bookid:string){
+    let seq = this.http.get(this.url+'book_transaction/'+bookid, { responseType: 'json'});
+    return seq;
+  }
+  updateBookById(bookid:string,book:BookInfoModel){
+    var params=JSON.stringify(book)
+   let seq=this.http.put(this.url+'book_transaction/'+bookid,params,{ headers: {'Content-Type':'application/x-www-form-urlencoded'}})
+   return seq;
+  }
+  getRecievedMessages(username:string){
+    const params=new HttpParams()
+    .append("query","IsDealed:false,Receiver:"+username)
+    .append("sortby","SendingTime")
+    .append("order","asc")
+    let seq = this.http.get(this.url+'messger', { responseType: 'json' ,params:params});
+    return seq;
+  }
+  updateMessageById(mid:string,msg:MessageWithIdModel){
+    var params=JSON.stringify(msg)
+   let seq=this.http.put(this.url+'messger/'+mid,params,{ headers: {'Content-Type':'application/x-www-form-urlencoded'}})
+   return seq;
   }
 }

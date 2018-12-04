@@ -7,12 +7,48 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title>Lended Books</ion-title>
+    <ion-title>Lended Books<ion-icon name="ios-log-out" (click)="logout()" style="color:white !important; float: right;" ></ion-icon></ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding class="bkgrd">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Pull to refresh"
+          refreshingSpinner="circles"
+          refreshingText="Refreshing...">
+        </ion-refresher-content>
+      </ion-refresher>
+  <div *ngFor="let abook of books">
+     <ion-card color="dark">
+         <ion-card-header>
+             {{abook.BookName}}
+           </ion-card-header>
+           <ion-list>
+               <ion-item center>Author: {{abook.BookAuthor}}</ion-item>
+               <ion-item center>Borrower: {{abook.BookBorrower}}</ion-item>
+               <ion-item center>Expect Return Date: {{abook.ExpectReturnTime}}</ion-item>
+               <ion-item center>Book Description: {{abook.BookDescription}}</ion-item>
+               <ion-item center><button ion-button outline (click)="openModal(abook)" full color="dark">Send Message to Borrower</button></ion-item>
+             </ion-list>
+     </ion-card>
+  </div>
+  <div id="myModal" class="modal">
 
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <ion-item>
+        <ion-label style="text-align: center;">Message to {{msg.Receiver}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-textarea  placeholder="Message..." rows="5" [(ngModel)]="msg.Content" style="height:100%"></ion-textarea>
+      </ion-item>
+      <ion-item center><button ion-button outline (click)="SendMessage(msg)" full color="dark">Send</button></ion-item>
+    </div>
+    
+  </div>
 </ion-content>

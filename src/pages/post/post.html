@@ -7,12 +7,43 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title>Posted Books</ion-title>
+    <ion-title>Posted Books<ion-icon name="ios-log-out" (click)="logout()" style="color:white !important; float: right;" ></ion-icon></ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding class="bkgrd">
-
-</ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Pull to refresh"
+          refreshingSpinner="circles"
+          refreshingText="Refreshing...">
+        </ion-refresher-content>
+      </ion-refresher>
+    <div *ngFor="let abook of books">
+       <ion-card color="dark">
+           <ion-card-header>
+               {{abook.BookName}}
+             </ion-card-header>
+             <ion-list>
+                 <ion-item center>Author: {{abook.BookAuthor}}</ion-item>
+                 <ion-item center>Post Expiration: {{abook.PostExpiration}}</ion-item>
+                 <ion-item center>Expect Return Date: {{abook.ExpectReturnTime}}</ion-item>
+                 <ion-item center>Book Description: {{abook.BookDescription}}</ion-item>
+                 <ion-item center><button ion-button outline (click)="GenerateQR(abook)" full color="dark">Generate QRcode to Lend</button></ion-item>
+               </ion-list>
+       </ion-card>
+    </div>
+    <!-- The Modal -->
+ <div id="myModal" class="modal">
+     <div style="display:flex;
+     justify-content:center;
+     align-items: center;">
+         <qr-code [value]="bookidqr" [size]="200"></qr-code>
+     </div>
+     <span class="close"> <ion-icon name="close"></ion-icon></span>
+     
+     <div id="caption"></div>
+   </div>
+ </ion-content>
